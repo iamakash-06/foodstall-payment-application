@@ -1,0 +1,86 @@
+.vendors {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.about .aboutBottom h1 {
+  font-weight: 400;
+  font-size: 70px;
+  color: black;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  transform: translateY(-40px);
+}
+.title {
+  font-size: 25px;
+  text-align: center;
+  color: #000000;
+}
+.table{
+  width: 50%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;  
+  margin-left: auto;
+  margin-right: auto;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 50px;
+}
+a {
+  color: rgb(255, 255, 255);
+  display: inline-block;
+}
+
+
+.buttons{
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button1{
+  width: 100px;
+  background-color: black;
+  font-size: 15px;
+  padding: 10px 60px;
+  border-radius: 10px;
+  margin-left: 140%;
+  margin-right: 50px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.button1:hover{
+  background-color: rgb(72, 82, 83);
+}
+
+.button2{
+  width: 100px;
+  background-color: black;
+  font-size: 15px;
+  padding: 10px 60px;
+  border-radius: 10px;
+  margin-left: 140%;
+  margin-right: 50px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.button3{
+  width: 100px;
+  background-color: black;
+  font-size: 15px;
+  padding: 10px 60px;
+  border-radius: 10px;
+  margin-left: 140%;
+  margin-right: 50px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
