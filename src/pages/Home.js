@@ -10,10 +10,10 @@ function Menu() {
     <div className="menu">
       <h1 className="menuTitle">Welcome</h1>
       <div className="menuList">
-      <Link to="/">
+      <Link to="/billers">
       <div className="menuItem">
         <div style={{ backgroundImage: `url(${Billers})` }}> </div>
-        <h1> Billers </h1>
+        <h2> Billers </h2>
       </div>
       </Link>
 
