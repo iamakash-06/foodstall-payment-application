@@ -46,8 +46,8 @@ export default function BasicTable() {
   
   return (
     <div className="vendors">
-    <div className="title"><h1>Vendors</h1></div>
-    <div className="table">
+    <div className="vendorsTitle"><h1>Vendors</h1></div>
+    <div className="vendorsTable">
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>

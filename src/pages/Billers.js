@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import { nanoid } from "nanoid";
-import "../styles/Vendors.css";
 import ReadOnlyRow from "../components/ReadOnlyRow";
 import EditableRow from "../components/EditableRow";
 import "../styles/Billers.css";
@@ -129,9 +128,9 @@ const Billers = () => {
   };
 
   return (
-    <div className="app-container">
-        <h1>Billers</h1>
-      <form onSubmit={handleEditFormSubmit}>
+    <div className="billers">
+        <h1>BILLERS</h1>
+      <form calssName="billersForm" onSubmit={handleEditFormSubmit}>
         <table>
           <thead>
             <tr>
@@ -162,7 +161,7 @@ const Billers = () => {
         </table>
       </form>
 
-      <form onSubmit={handleAddFormSubmit}>
+      <form className= "billersForm" onSubmit={handleAddFormSubmit}>
         <input
           type="text"
           name="fullName"

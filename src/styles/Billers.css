@@ -1,13 +1,22 @@
-.app-container {
+.billers {
     display: flex;
     flex-direction: column;
     gap: 10px;
     padding: 1rem;
-    margin-top: 80px;
+    margin-top: 50px;
     margin-bottom: 80px;
   }
+
+  .billers h1{
+  font-size: 25px;
+  text-align: center;
+  color: #000000;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
   
-  table {
+  .billers table {
     border-collapse: collapse;
     width: 80%;
     margin-bottom: 50px;
@@ -16,35 +25,35 @@
     border-radius: 50px;
   }
   
-  th,
-  td {
+  .billers th,
+  .billers td {
     border: 1px solid #ffffff;
     text-align: left;
     padding: 8px;
     font-size: 20px;
   }
   
-  th {
+  .billers th {
     background-color: rgb(0, 0, 0);
     color: rgb(255, 255, 255);
   }
   
-  td {
+  .billers td {
     background-color: rgb(187, 222, 216);
   }
   
-  form {
+  .billersForm {
     display: flex;
     gap: 5px;
     justify-content: center;
     border-radius: 50px;
   }
   
-  form td:last-child {
+  .billersForm td:last-child {
     display: flex;
     justify-content: space-evenly;
   }
   
-  form * {
+  .billersForm * {
     font-size: 20px;
   }
