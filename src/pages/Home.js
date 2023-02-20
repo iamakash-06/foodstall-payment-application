@@ -27,7 +27,7 @@ function Menu() {
       <Link to="/">
       <div className="menuItem">
         <div style={{ backgroundImage: `url(${Items})` }}> </div>
-        <h1> Items List </h1>
+        <h1> Orders </h1>
       </div>
       </Link>
       
