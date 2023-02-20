@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -8,26 +7,33 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
 import "../styles/Vendors.css";
+import React, { useEffect, useState } from "react";
 
 import axios from "axios";
 
-// Make an AJAX call
-let rows = [];
-
-axios.get("/api/vendor/display")
-.then(res => {
-  // Get the response data and save it as 'rows' 
-  rows = res.data;
-})
-.catch(err => console.log(err));
 
 
 export default function BasicTable() {
+
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    // Fetch resource when Component mounts
+    const fetchData = async () => {
+      try {
+        const result = await axios.get("http://localhost:3001/api/vendor/display");
+        setRows(result.data);
+      } catch (error) {
+        console.log("Error fetching data", error);
+      }
+    };
+    fetchData();
+  }, []);
   
   return (
     <div className="vendors">
-    <div className="title"><h1>Vendors</h1></div>
-    <div className="table">
+    <div className="vendorsTitle"><h1>Vendors</h1></div>
+    <div className="vendorsTable">
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
         <TableHead>

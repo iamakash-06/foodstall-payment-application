@@ -6,22 +6,12 @@
   margin-right: auto;
 }
 
-
-.about .aboutBottom h1 {
-  font-weight: 400;
-  font-size: 70px;
-  color: black;
-  height: 30px;
-  display: flex;
-  justify-content: center;
-  transform: translateY(-40px);
-}
-.title {
+.vendorsTitle {
   font-size: 25px;
   text-align: center;
   color: #000000;
 }
-.table{
+.vendorsTable{
   width: 50%;
   height: 100%;
   display: flex;
@@ -34,18 +24,18 @@
   margin-top: 10px;
   margin-bottom: 50px;
 }
-a {
-  color: rgb(255, 255, 255);
+.vendors a {
+  color: rgb(0, 0, 0);
   display: inline-block;
 }
 
 
-.buttons{
+.vendors.buttons{
   width: 100%;
   margin-left: auto;
   margin-right: auto;
 }
-.button1{
+.vendors.buttons.button1{
   width: 100px;
   background-color: black;
   font-size: 15px;
@@ -57,11 +47,11 @@ a {
   margin-bottom: 20px;
 }
 
-.button1:hover{
+.vendors.buttons.button1:hover{
   background-color: rgb(72, 82, 83);
 }
 
-.button2{
+.vendors.buttons.button2{
   width: 100px;
   background-color: black;
   font-size: 15px;
@@ -72,7 +62,7 @@ a {
   cursor: pointer;
   margin-bottom: 20px;
 }
-.button3{
+.vendors.buttons.button3{
   width: 100px;
   background-color: black;
   font-size: 15px;
