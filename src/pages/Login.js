@@ -5,23 +5,14 @@ import "../styles/Login.css";
 import React, { useState } from "react";
 import ReactDOM from "react-dom";
 
+import axios from "axios";
+
 
 function Login() {
   // React States
   const [errorMessages, setErrorMessages] = useState({});
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // User Login info
-  const database = [
-    {
-      username: "user1",
-      password: "pass1"
-    },
-    {
-      username: "user2",
-      password: "pass2"
-    }
-  ];
 
   const errors = {
     uname: "invalid username",
@@ -34,22 +25,15 @@ function Login() {
 
     var { uname, pass } = document.forms[0];
 
-    // Find user login info
-    const userData = database.find((user) => user.username === uname.value);
-
-    // Compare user info
-    if (userData) {
-      if (userData.password !== pass.value) {
-        // Invalid password
-        setErrorMessages({ name: "pass", message: errors.pass });
-      } else {
+    axios
+    .post("http://localhost:3001/api/admin/login", {username: uname.value, password: pass.value})
+    .then((res) => {
+      if (res.status === 200) {
         setIsSubmitted(true);
       }
-    } else {
-      // Username not found
-      setErrorMessages({ name: "uname", message: errors.uname });
-    }
-  };
+    })
+  .catch(err => console.log(err));
+};
 
   // Generate JSX code for error message
   const renderErrorMessage = (name) =>
@@ -94,5 +78,3 @@ function Login() {
 }
 
 export default Login;
-
-

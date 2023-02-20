@@ -9,37 +9,17 @@ import Paper from '@mui/material/Paper';
 import { Link } from "react-router-dom";
 import "../styles/Vendors.css";
 
+import axios from "axios";
 
+// Make an AJAX call
+let rows = [];
 
-const rows = [{Name:"Aparna" , 
-              ID:"AB", 
-              Items: [{ItemName:"Burger",
-                       Price:"$5.00"},
-                      {ItemName:"Pizza",
-                       Price:"$10.00"}]
-              },
-              {Name:"Aparna" , 
-              ID:"AB", 
-              Items: [{ItemName:"Burger",
-                       Price:"$5.00"},
-                      {ItemName:"Pizza",
-                       Price:"$10.00"}]
-              },
-              {Name:"Aparna" , 
-              ID:"AB", 
-              Items: [{ItemName:"Burger",
-                       Price:"$5.00"},
-                      {ItemName:"Pizza",
-                       Price:"$10.00"}]
-              },
-              {Name:"Aparna" , 
-              ID:"AB", 
-              Items: [{ItemName:"Burger",
-                       Price:"$5.00"},
-                      {ItemName:"Pizza",
-                       Price:"$10.00"}]
-              }
-              ];
+axios.get("/api/vendor/display")
+.then(res => {
+  // Get the response data and save it as 'rows' 
+  rows = res.data;
+})
+.catch(err => console.log(err));
 
 
 export default function BasicTable() {
