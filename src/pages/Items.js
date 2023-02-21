@@ -1,21 +1,26 @@
 import React, { useState, Fragment , useEffect} from "react";
 import { nanoid } from "nanoid";
-import ReadOnlyRow from "../components/ReadOnlyRow";
-import EditableRow from "../components/EditableRow";
+import ReadOnlyRow from "../components/ReadOnlyRowItems";
+import EditableRow from "../components/EditableRowItems";
 import "../styles/Billers.css";
 import axios from "axios";
 
-const Billers = () => {
+const Items = props => {
+    const {id,fullName, ID} =
+    (props.location.state);
 
-  const [data, setData] = useState([]);
+    console.log(id);
+
+    const [data, setData] = useState([]);
   useEffect(() => {
     // Fetch resource when Component mounts
     const fetchData = async () => {
       try {
-        const result = await axios.get("http://localhost:3001/api/biller/display");
+        const result = await axios.get(`http://localhost:3001/api/item/display/${id}`);
 
-    const updatedData = result.data.map((item, index) => {
-      return { id: item._id, fullName: item.name, phoneNumber: item.phone};
+        const updatedData = result.data.map((item, index) => {
+          return { id: item._id, fullName: item.name, phoneNumber: item.price};
+
   });
 
   setData(updatedData);
@@ -29,6 +34,7 @@ fetchData();
   }, []);
 
   console.log(data);
+
     const [contacts, setContacts] = useState(data);
     const [addFormData, setAddFormData] = useState({
       fullName: "",
@@ -71,36 +77,35 @@ fetchData();
   
       const newContact = {
         name: addFormData.fullName,
-        phone: addFormData.phoneNumber,
+        price: addFormData.phoneNumber,
       };
-  
-      const res = await axios.post(`http://localhost:3001/api/biller/new`, newContact)
+
+      const res = await axios.post(`http://localhost:3001/api/item/${id}/new`, newContact)
         .then((result) => {
           console.log(result.data)
-          const newData = {id: nanoid(), fullName: result.data.name, phoneNumber: result.data.phone};
+          const newData = {id: nanoid(), fullName: result.data.name, phoneNumber: result.data.price};
         setData(() => [...data, newData]);
         window.location.reload();
         })
-  }
+    };
   
     const handleEditFormSubmit = async (event) => {
       event.preventDefault();
   
       const editedContact = {
         name: editFormData.fullName,
-        phone: editFormData.phoneNumber,
+        price: editFormData.phoneNumber,
       };
-    
-      const res = await axios.put(`http://localhost:3001/api/biller/${editContactId}`, editedContact)
+  
+      const res = await axios.put(`http://localhost:3001/api/item/${id}/${editContactId}`, editedContact)
         .then((result) => {
           console.log(result.data);
-          const editedData = {id: editContactId, fullName: result.data.name, phoneNumber: result.data.phone};
+          const editedData = {id: editContactId, fullName: result.data.name, phoneNumber: result.data.price};
     
         setData(data.map(contact => contact.id === editContactId ? editedData : contact));
         setEditContactId(null);
         window.location.reload();
         })
-    
     };
   
     const handleEditClick = (event, contact) => {
@@ -121,34 +126,36 @@ fetchData();
   
     const handleDeleteClick = async (contactId) => {
       try {
-      const result = await axios.delete(`http://localhost:3001/api/biller/delete/${contactId}`);
-
-          // Get the new data and update the state
-      let updatedData = [...data];
-      updatedData = updatedData.filter(item => item._id !== contactId);
-      setData(updatedData);
-      window.location.reload();
-      } catch (error) {
-          console.log("Error deleting data", error);
-      }
+        const result = await axios.delete(`http://localhost:3001/api/item/delete/${id}/${contactId}`);
+  
+            // Get the new data and update the state
+        let updatedData = [...data];
+        updatedData = updatedData.filter(item => item._id !== contactId);
+        setData(updatedData);
+        window.location.reload();
+        } catch (error) {
+            console.log("Error deleting data", error);
+        }
     };
   
     return (
       <div className="billers">
-          <h1>BILLERS</h1>
-        <form calssName="billersForm" onSubmit={handleEditFormSubmit}>
+        
+        <h1>ITEMS</h1>
+        <h4><center>Vendor Name: {fullName} &nbsp; &nbsp; &nbsp; Password: {ID}</center></h4>
+        <form onSubmit={handleEditFormSubmit}>
           <table>
             <thead>
               <tr>
                 <th>Name</th>
-                <th>Phone Number</th>
+                <th>Price</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {data.map((val) => (
+              {data.map((contact) => (
                 <Fragment>
-                  {editContactId === val.id ? (
+                  {editContactId === contact.id ? (
                     <EditableRow
                       editFormData={editFormData}
                       handleEditFormChange={handleEditFormChange}
@@ -156,7 +163,7 @@ fetchData();
                     />
                   ) : (
                     <ReadOnlyRow
-                      contact={val}
+                      contact={contact}
                       handleEditClick={handleEditClick}
                       handleDeleteClick={handleDeleteClick}
                     />
@@ -172,7 +179,7 @@ fetchData();
             type="text"
             name="fullName"
             required="required"
-            placeholder="Enter a name"
+            placeholder="Enter item name"
             onChange={handleAddFormChange}
           />
           
@@ -180,13 +187,14 @@ fetchData();
             type="text"
             name="phoneNumber"
             required="required"
-            placeholder="Enter Phone Number"
+            placeholder="Enter price"
             onChange={handleAddFormChange}
           />
           <button type="submit">Add</button>
         </form>
       </div>
     );
-  };
   
-  export default Billers;
+}
+
+export default Items
